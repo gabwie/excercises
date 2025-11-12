@@ -1,0 +1,68 @@
+1. 
+SELECT e.first_name, e.last_name, d.department_name, l.city
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.id
+INNER JOIN locations AS l
+ON d.location_id = l.id
+
+2.
+SELECT d.department_name, l.city
+FROM departments AS d
+INNER JOIN locations AS l
+ON d.location_id = l.id
+ORDER BY city
+
+3.
+SELECT e.first_name, e.birth_date, d.department_name
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.id
+WHERE e.birth_date > "1994-01-01"
+
+4. 
+SELECT e.first_name, d.department_name, l.city
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.id
+INNER JOIN locations AS l
+ON d.location_id = l.id
+WHERE e.department_id IN (1, 6)
+ORDER BY first_name
+
+5. 
+SELECT COUNT(*) AS number_of_employees, department_id
+FROM employees
+GROUP BY department_id
+
+6.
+SELECT COUNT(*) AS number_of_employees, job_id
+FROM employees
+GROUP BY job_id
+ORDER BY number_of_employees DESC
+
+7.
+SELECT COUNT(*) AS number_of_departments, locations.city
+FROM departments
+INNER JOIN locations
+ON departments.location_id = locations.id
+GROUP BY locations.city
+
+8. 
+SELECT COUNT(*) AS number_of_employees, department_id, job_id
+FROM employees
+GROUP BY department_id, job_id
+
+9.
+SELECT COUNT(*) AS number_of_employees, jobs.title, departments.department_name, locations.city
+FROM employees
+INNER JOIN jobs
+ON employees.job_id = jobs.id
+INNER JOIN departments
+ON employees.department_id = departments.id
+INNER JOIN locations
+ON departments.location_id = locations.id
+GROUP BY jobs.title, departments.department_name, locations.city
+ORDER BY number_of_employees
+
+
